@@ -2,13 +2,62 @@
     display: flex;
 }
 
-.layout_navigation {
+.navigation {
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+.layout-navigation {
     flex: none;
     max-width: 15rem;
     width: 100%;
+    border-right: 1px solid gainsboro;
 }
 
-.layout_content {
+.layout-content {
     flex: 1;
     padding: 2rem 4rem;
+}
+
+.section {
+    margin: 0.5rem;
+}
+
+.section__content {
+    margin: 1.5rem 0;
+}
+
+.section__content__sub-heading {
+    margin-top: 1rem;
+}
+
+.section-spacing {
+    margin-top: 3rem;
+}
+
+.layout-navigation,
+.navigation {
+    padding: 1rem;
+}
+
+.navigation__list {
+    padding: 1rem 0;
+}
+
+.navigation__item {
+    text-transform: uppercase;
+    padding: 0.75rem 0;
+    font-size: 0.75rem;
+    font-weight: bold;
+    font-family: 'Ubuntu';
+}
+
+.ordered-list-heading {
+    margin-top: 1rem;
+}
+
+.ordered-list {
+    list-style: decimal;
+    margin-left: 2rem;
 }

@@ -1,0 +1,21 @@
+.legend {    
+    .legend_item {    
+        display: inline-flex;
+        margin: 0 0.25rem;
+
+        .legend_dot {
+            display: inline-block;
+            height: 0.75rem;
+            width: 0.75rem;
+            border-radius: 50%;
+            margin-right: 6px;
+            margin-top: 1px;
+            background-color: red;
+        }
+
+        .legend_label {
+            font-weight: 300;
+            font-size: 0.69rem;
+        }
+    }
+}

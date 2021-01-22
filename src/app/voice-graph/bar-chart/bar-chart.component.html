@@ -1,4 +1,18 @@
 <div class="bar_chart">
+    <div class="legend">
+        <div class="legend_item">
+            <span class="legend_dot --positive"></span>
+            <span class="legend_label">Positive Conversation</span>
+        </div>
+        <div class="legend_item">
+            <span class="legend_dot --negative"></span>
+            <span class="legend_label">Negative Conversation</span>
+        </div>
+        <div class="legend_item">
+            <span class="legend_dot"></span>
+            <span class="legend_label">Neutral Conversation</span>
+        </div>
+    </div>
 
     <svg [attr.viewBox]="chartViewBox"
             [attr.height]="chartHeight"

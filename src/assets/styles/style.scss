@@ -1,10 +1,25 @@
 @import 'button';
 @import 'reset';
 @import 'typography';
+@import 'legend';
+
+:root {
+    --primary-color-1: #0891B2;
+    --primary-color-2: #0E7490;
+    --primary-accent-1: #06B6D4;
+
+    --foreground-color: white;
+    --background-color: white;
+
+    --font-color: rgb(107,114,128);
+    --font-heading-color: rgb(17, 24, 39);
+
+}
 
 body {
     font-family: 'Open Sans', sans-serif;
-    color: rgb(107,114,128);
+    color: var(--font-color);
+    line-height: 1.5;
 }
 
 h1,
@@ -14,5 +29,6 @@ h4,
 h5,
 h6 {
     font-family: 'Ubuntu', sans-serif;
-    color: rgb(17, 24, 39);
+    font-weight: bold;
+    color: var(--font-heading-color);
 }

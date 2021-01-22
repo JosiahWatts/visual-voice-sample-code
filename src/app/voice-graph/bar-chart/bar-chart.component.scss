@@ -1,3 +1,12 @@
+.bar_chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0 0 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid gainsboro;
+}
+
 .agent-chart {
     margin-bottom: -2px;
 }
@@ -6,4 +15,23 @@
     background-color: gainsboro;
     height: 2px;
     margin: 4px 0;
+}
+
+.legend {
+    align-self: flex-end;
+    margin-right: 1rem;
+    margin-bottom: 0.75rem;
+    
+    .legend_dot {
+        height: 0.5rem;
+        width: 0.5rem;
+        background-color: #c6c6c6;
+
+        &.--positive { background-color: #87c03f;}
+        &.--negative { background-color: #e04a1d;}
+    }
+
+    .legend_label {
+        font-size: 0.563rem;
+    }
 }

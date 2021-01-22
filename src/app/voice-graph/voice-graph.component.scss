@@ -1,17 +1,23 @@
+.visual_voice_graph {
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+}
+
 .audio_player__progress {
     display: flex;
     align-items: center;
-    margin: 0 4rem;
+    margin: 0 2rem;
 
     .audio_player__progress__bar {
         flex: 1;
         background-color: gainsboro;
         position: relative;   
-        margin: 0 1rem;
+        margin: 0 0.75rem;
+        cursor: pointer;
 
         .audio_player__progress__bar__value {    
             position: absolute;
-            background: red;
+            background: var(--primary-accent-1);
             left: 0;
             top: 0;
         }
@@ -19,7 +25,7 @@
 
     .audio_player__progress__bar,
     .audio_player__progress__bar__value {
-        height: 0.5rem;
+        height: 0.35rem;
         border-radius: 20px;
     }
 
@@ -28,10 +34,12 @@
 .audio_player__controls {
     display: flex;
     justify-content: center;
+    margin: 0.5rem 0;
 
     .audio_button {
         width: 1.5rem;
         height: auto;
+        color: var(--primary-color-1);
 
         &.--play {
             width: 2.5rem;

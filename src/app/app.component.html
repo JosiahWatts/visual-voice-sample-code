@@ -1,48 +1,104 @@
 <div class="layout">
-    <aside class="layout_navigation">
-        <nav>
-            <ul>
-                <li><a>The What?</a></li>
-                <li><a>The Who?</a></li>
-                <li><a>The Why?</a></li>
-                <li><a>The How?</a></li>
+    <aside class="layout-navigation">
+        <nav class="navigation">
+            <h1 class="text-lg">Visual Voice Demo</h1>
+            <ul class="navigation__list">
+                <li class="navigation__item"><a>An Overview</a></li>
+                <li class="navigation__item"><a>How it Works</a></li>
+                <li class="navigation__item"><a>Technical Challenges</a></li>
             </ul>
         </nav>
     </aside>
-    <main class="layout_content">
-        <section>
-            <div class="section_title">
-                <h1 class="text-xlg font-bold">The What?</h1>
+    <main class="layout-content">
+        <section class="section">
+            <div class="section__title">
+                <h1 class="text-xxlg">An Overview</h1>
+                <p class="font-hairline">The CallRevu Visual Voice Graph</p>
             </div>
-            <div class="section_content">
+            <div class="section__content">
                 <app-voice-graph></app-voice-graph>
+
+                <p style="margin-top: 2rem">
+                    The CallRevu Visual Voice Graph is a visual representation developed by me (Josiah Watts) for CallRevu in order to represent a typical phone call that comes into an automotive dealership. 
+                    This representation is beneficial because it's a fairly quick way to determine the outcome of a call. Each bar represents a predefined slice of the call audio. Looking at the graph, 
+                    you can immediately see the colored bars. These colored bars represent the emotional state of the agent (top) and customer (bottom) at the time of the call. If you hover over the dots, 
+                    you are able to see the phrase that caused the bar to change color. Additionally, you can click on the bars and the audio player will skip to that point on the recording.
+                </p>
             </div>
         </section>
 
-        <section>
-            <div class="section_title">
-                <h1 class="text-xlg font-bold">The Who?</h1>
+        <!-- <section class="section">
+            <div class="section__title">
+                <h1 class="text-xxlg">The Who?</h1>
             </div>
-            <div class="section_content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam tempora magni hic sequi, ut voluptatem quidem, alias autem facilis cumque odio eum harum incidunt! Nam quod debitis voluptas repellat quas?</p>
+            <div class="section__content">
+                <p>
+                    The Visual Voice Graph was developed by myself, Josiah Watts. There were definitely a few technical challenges when developing the solution which we go into detail on here. 
+                    The solution required a ton of collaboration between myself, the product team and U
+                </p>
             </div>
-        </section>
+        </section> -->
 
-        <section>
-            <div class="section_title">
-                <h1 class="text-xlg font-bold">The Why?</h1>
+        <!-- <section class="section">
+            <div class="section__title">
+                <h1 class="text-xxlg">The Why?</h1>
             </div>
-            <div class="section_content">
+            <div class="section__content">
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio aliquid voluptatem non harum ipsa amet, numquam reiciendis, reprehenderit sit quidem aspernatur labore fuga beatae libero ipsum aperiam neque, eum facere!</p>
             </div>
+        </section> -->
+
+        <section class="section section-spacing">
+            <div class="section__title">
+                <h1 class="text-xxlg">How It Works</h1>
+                <p class="font-hairline">How does anything work these days?</p>
+            </div>
+            <div class="section__content">
+                <p>
+                    The Visual Voice graph was a challenging but fun problem to solve. Especially since there really isn't anything like it so you couldn't go watch a tutorial or read a blog post in order to build it. 
+                    I think this would probably be the most custom feature of an application I've worked on yet. Here's a very general overview on how it works:
+                </p>
+
+                <h5 class="ordered-list-heading">Back End</h5>
+                <ol class="ordered-list">
+                    <li>Get the audio recording from Twilio</li>
+                    <li>Transform the audio recording into waveform data (easier said than done)</li>
+                    <li>Get the transcription data from a third party service</li>
+                    <li>The previous steps create the metadata which is then served up to the front-end via REST endpoint</li>
+                </ol>
+                <h5 class="ordered-list-heading">Front End</h5>
+                <ol class="ordered-list">
+                    <li>We pull in the metadata from the REST endpoint</li>
+                    <li>The metadata is then passed over to the Visual Voice Graph Service</li>
+                    <li>The service cleans the metadata by normalizing the values</li>
+                    <li>From there, we split the metadata into an Agent Channel and a Customer Channel and create a base bar configuration</li>
+                    <li>After that, the service matches up transcriptions to the audio by checking if the start/end transcription time falls between the chart's index and next index.</li>
+                    <li>Finally, the data is returned from the service and passed into the graph component which displays the bars</li>
+                </ol>
+            </div>
         </section>
 
-        <section>
-            <div class="section_title">
-                <h1 class="text-xlg font-bold">The How?</h1>
+        <section class="section section-spacing">
+            <div class="section__title">
+                <h1 class="text-xxlg">Technical Challenges</h1>
+                <p class="font-hairline">There were quite a few!</p>
             </div>
-            <div class="section_content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias rem deserunt quos modi esse neque tempore expedita molestiae ea totam labore ullam sunt voluptatibus ducimus quasi velit voluptatum, eveniet autem?</p>
+            <div class="section__content">
+                <h6>Waveform Data</h6>
+                <p>
+                    As mentioned above, the Visual Voice Graph provided quite a few technical challenges. The first technical challenge I faced was how to take a recording and translate it to a graph. 
+                    I took some time to research and then finally reached the idea to use the audio waveform data to build the graph. I wound up using a command line utility 'audiowaveform' to create the 
+                    waveform data. The next challenge was getting the waveform data into a format that actually worked. There was a requirement that each bar was equal to 3 seconds (or something close to that) of the audio recording. 
+                    Lucky for me, the waveform utility had the ability to set the sample rate when generating the waveform data. I did some math and found the sample rate to use to get me to my target.
+                </p>
+
+                <h6 class="section__content__sub-heading">Mapping the Transcriptions</h6>
+                <p>
+                    Another big challenge I had to face was mapping the call transcription utterances to the audio in order to color the chart bars based on emotion. Essentially, I found that in order to do this, I first had to loop through 
+                    the Agent and the Customer transcription utterances and round them to the nearest whole number. From there, I would loop through the chart data of whichever channel (Agent or Customer) and then have a nested loop going through the 
+                    channel's transcriptions. I would then check if the transcription utterance start time falls on or after the current index of the channel's chart data (index would represent the time here) and weirdly enough, if the utterance end time occurs before the end of the call. 
+                    It's not a perfect solution but it get's us close enough to tell a story of the call.
+                </p>
             </div>
         </section>
     </main>
