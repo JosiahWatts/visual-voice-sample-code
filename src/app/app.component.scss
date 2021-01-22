@@ -1,5 +1,6 @@
 .layout {
     display: flex;
+    margin: 1rem;
 }
 
 .navigation {
@@ -8,20 +9,65 @@
     left: 0;
 }
 
+main {
+    margin: 2rem 4rem;
+
+    @media (max-width: 1024px) { 
+        margin: 2rem;
+    }
+}
+
+.hamburger-button,
+.close-button {
+    display: none;
+    height: 2rem;
+    width: 2rem;
+    font-size: 2rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+    @media (max-width: 1024px) { 
+        display: block; 
+    }
+}
+
+.close-button {
+    z-index: 101;
+    right: 4rem;
+}
+
 .layout-navigation {
     flex: none;
     max-width: 15rem;
     width: 100%;
     border-right: 1px solid gainsboro;
+
+    @media (max-width: 1024px) { 
+        display: none;
+    }
+}
+
+.fixed-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    z-index: 100;
+
+    .navigation {
+        position: relative;
+    }
 }
 
 .layout-content {
     flex: 1;
-    padding: 2rem 4rem;
 }
 
 .section {
-
     &.section-spacing {
         margin-top: 3rem;
     }
@@ -61,4 +107,22 @@
 .ordered-list {
     list-style: decimal;
     margin-left: 2rem;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+
+    span {
+        margin-left: 0.5rem;
+    }
+}
+
+.footer {
+    margin-top: 3rem;
+
+    .footer__text {
+        text-align: center;
+        font-size: 0.75rem;
+    }
 }

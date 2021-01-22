@@ -1,10 +1,11 @@
 .bar-chart {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 1rem 0 0 0;
     margin-bottom: 1rem;
     border-bottom: 1px solid gainsboro;
+    overflow: auto;
 }
 
 .agent-chart {
@@ -17,8 +18,12 @@
     margin: 4px 0;
 }
 
+.legend-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .legend {
-    align-self: flex-end;
     margin-right: 1rem;
     margin-bottom: 2rem;
     
