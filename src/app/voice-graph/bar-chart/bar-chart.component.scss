@@ -6,6 +6,16 @@
     margin-bottom: 1rem;
     border-bottom: 1px solid gainsboro;
     overflow: auto;
+
+    .keyword-dot,
+    .bar {
+        cursor: pointer;
+    }
+
+    .bar-chart__keyword-text {
+        font-size: 0.75rem;
+        padding-bottom: 0.25rem;
+    }
 }
 
 .agent-chart {

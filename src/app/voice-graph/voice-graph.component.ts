@@ -40,10 +40,8 @@ export class VoiceGraphComponent implements OnInit {
 				this.audioSeekRate = chartData.seekRate;
 				this.loadAudioFile();
 				this.isLoading = false;
-				console.log(chartData);
 			})
 			.catch(reason => {
-				console.log(reason);
 				this.visualVoiceBarChartData = null;
 				this.isLoading = false;
 			});
@@ -85,6 +83,12 @@ export class VoiceGraphComponent implements OnInit {
 		const seekToSeconds = this.audioState.duration * (audioProgressBarValue / 100);
 		
 		this.audioService.seekTo(seekToSeconds);
+	}
+
+	public seekToBar(barIndex: number) {
+		const time = (barIndex * this.audioSeekRate) - (this.audioSeekRate / 2);
+		
+		this.audioService.seekTo(time);
 	}
 
 	private loadAudioFile() {

@@ -27,6 +27,7 @@
                     [attr.cx]="i * (barWidth + barMargin) + (barWidth / 2)"
                     [attr.cy]="dotRadius + (chartHeight - (datum.value * 80) - 50)"
                     [attr.r]="dotRadius"
+                    (click)="showKeywords(datum)"
                     stroke-width="3"
                     [attr.fill]="datum.color" />
         </ng-container>
@@ -66,8 +67,11 @@
                     [attr.cx]="i * (barWidth + barMargin) + (barWidth / 2)"
                     [attr.cy]="datum.value * 80 + 50"
                     [attr.r]="dotRadius"
+                    [title]="datum.keywords"
+                    (click)="showKeywords(datum)"
                     stroke-width="3"
                     [attr.fill]="datum.color" />
         </ng-container>
     </svg>
+    <p *ngIf="selectedKeyword" class="bar-chart__keyword-text">Keyword - {{ selectedKeyword }}</p>
 </div>
