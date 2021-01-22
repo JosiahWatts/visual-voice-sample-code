@@ -7,6 +7,7 @@ import { BarChartBar } from 'src/app/shared/models/bar-chart-bar.model';
 @Component({
     selector: 'bar-chart',
     templateUrl: 'bar-chart.component.html',
+    styleUrls: ['bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit {
 
@@ -14,40 +15,20 @@ export class BarChartComponent implements OnInit {
     @Input() agentTalkTime: number;
     @Input() clientTalkTime: number;
     @Input() currentTime: number;
-    @Input() hideLabels = false;
-    @Input() isPreview = false;
     @Input() seekRate = 5;
-    @Input() showHighlighting: boolean = true;
-
-    @Input() 
-        get agentGender(): string {
-            return this._agentGender;
-        }
-        set agentGender(value: string) {
-            this._agentGender = value.toLocaleLowerCase();
-        }
-
-    @Input() 
-        get clientGender(): string {
-            return this._clientGender;
-        }
-        set clientGender(value: string) {
-            this._clientGender = value.toLocaleLowerCase();
-        }
-
     @Output() onSeek: EventEmitter<number> = new EventEmitter();
 
     public barHeight = 1;
     public barWidth = 7;
     public barMargin = 2;
-    public dotRadius = 6;
+    public dotRadius = 4;
     public barColor = '#c6c6c6';
 
     public _agentGender = 'm';
     public _clientGender = 'f';
 
     public chartWidth = 0;
-    public chartHeight = 130;
+    public chartHeight = 100;
     public chartViewBox: string;
 
     public currentAgentText: string;
@@ -75,9 +56,7 @@ export class BarChartComponent implements OnInit {
     }
 
     public onClick(bar, index) {
-        if (!this.isPreview) {
-            this.onSeek.emit((index * this.seekRate) - (this.seekRate / 2));
-        }
+        this.onSeek.emit((index * this.seekRate) - (this.seekRate / 2));
 
         // Need this for now since production data
         // and development data differ.

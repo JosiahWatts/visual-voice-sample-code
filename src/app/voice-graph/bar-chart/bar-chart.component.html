@@ -1,63 +1,57 @@
-<div class="chart-flex-wrapper">
-    
-    <div class="chart-scroll-container scroll-container">
+<div class="bar_chart">
 
-        <svg [attr.viewBox]="chartViewBox"
-             [attr.height]="chartHeight"
-             [attr.width]="chartWidth">
+    <svg [attr.viewBox]="chartViewBox"
+            [attr.height]="chartHeight"
+            [attr.width]="chartWidth"
+            class="agent-chart">
 
-            <ng-container *ngFor="let datum of data.agent; index as i">
-                <circle *ngIf="datum.keywords?.length >= 1"
-                        class="keyword-dot"
-                        [attr.cx]="i * (barWidth + barMargin) + (barWidth / 2)"
-                        [attr.cy]="dotRadius + 10"
-                        [attr.r]="dotRadius"
-                        stroke-width="3"
-                        [attr.fill]="datum.color" />
-            </ng-container>
+        <ng-container *ngFor="let datum of data.agent; index as i">
+            <circle *ngIf="datum.keywords?.length >= 1"
+                    class="keyword-dot"
+                    [attr.cx]="i * (barWidth + barMargin) + (barWidth / 2)"
+                    [attr.cy]="dotRadius + (chartHeight - (datum.value * 80) - 50)"
+                    [attr.r]="dotRadius"
+                    stroke-width="3"
+                    [attr.fill]="datum.color" />
+        </ng-container>
 
-            <rect *ngFor="let datum of data.agent; index as i"
-                  (click)="onClick(datum, i)"
-                  class="bar agent"
-                  [attr.fill]="datum.color"
-                  [attr.x]="i * (barWidth + barMargin)"
-                  [attr.y]="chartHeight - (datum.value * 80)"
-                  [attr.height]="datum.value * 100"
-                  [attr.width]="barWidth">
-            </rect>
-        </svg>
-        <!-- <div>
-            <div class="progressbar"
-                 [ngClass]="{ 'preview': isPreview }"
-                 [ngStyle]="{width: chartWidth + 'px' }">
-                <div *ngIf="!isPreview"
-                     [ngStyle]="{ 'width': getProgressValue() + 'px' }"
-                     class="progressbar-value"></div>
-            </div>
-        </div> -->
-        <svg [attr.viewBox]="chartViewBox"
-             [attr.height]="chartHeight"
-             [attr.width]="chartWidth">
+        <rect *ngFor="let datum of data.agent; index as i"
+                (click)="onClick(datum, i)"
+                class="bar agent"
+                [attr.fill]="datum.color"
+                [attr.x]="i * (barWidth + barMargin)"
+                [attr.y]="chartHeight - (datum.value * 80)"
+                [attr.height]="datum.value * 100"
+                [attr.width]="barWidth">
+        </rect>
+    </svg>
 
-            <rect *ngFor="let datum of data.customer; index as i"
-                  class="bar customer"
-                  (click)="onClick(datum, i)"
-                  [attr.fill]="datum.color"
-                  [attr.x]="i * (barWidth + barMargin)"
-                  [attr.y]="0"
-                  [attr.height]="datum.value * 80"
-                  [attr.width]="barWidth">
-            </rect>
-
-            <ng-container *ngFor="let datum of data.customer; index as i">
-                <circle *ngIf="datum.keywords?.length >= 1"
-                        class="keyword-dot"
-                        [attr.cx]="i * (barWidth + barMargin) + (barWidth / 2)"
-                        [attr.cy]="chartHeight - (dotRadius + 10)"
-                        [attr.r]="dotRadius"
-                        stroke-width="3"
-                        [attr.fill]="datum.color" />
-            </ng-container>
-        </svg>
+    <div class="chart-divider"
+        [ngStyle]="{width: chartWidth + 'px' }">
     </div>
+
+    <svg [attr.viewBox]="chartViewBox"
+            [attr.height]="chartHeight"
+            [attr.width]="chartWidth">
+
+        <rect *ngFor="let datum of data.customer; index as i"
+                class="bar customer"
+                (click)="onClick(datum, i)"
+                [attr.fill]="datum.color"
+                [attr.x]="i * (barWidth + barMargin)"
+                [attr.y]="0"
+                [attr.height]="datum.value * 80"
+                [attr.width]="barWidth">
+        </rect>
+
+        <ng-container *ngFor="let datum of data.customer; index as i">
+            <circle *ngIf="datum.keywords?.length >= 1"
+                    class="keyword-dot"
+                    [attr.cx]="i * (barWidth + barMargin) + (barWidth / 2)"
+                    [attr.cy]="datum.value * 80 + 50"
+                    [attr.r]="dotRadius"
+                    stroke-width="3"
+                    [attr.fill]="datum.color" />
+        </ng-container>
+    </svg>
 </div>

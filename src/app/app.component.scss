@@ -1,0 +1,14 @@
+.layout {
+    display: flex;
+}
+
+.layout_navigation {
+    flex: none;
+    max-width: 15rem;
+    width: 100%;
+}
+
+.layout_content {
+    flex: 1;
+    padding: 2rem 4rem;
+}

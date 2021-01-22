@@ -1,0 +1,40 @@
+.audio_player__progress {
+    display: flex;
+    align-items: center;
+    margin: 0 4rem;
+
+    .audio_player__progress__bar {
+        flex: 1;
+        background-color: gainsboro;
+        position: relative;   
+        margin: 0 1rem;
+
+        .audio_player__progress__bar__value {    
+            position: absolute;
+            background: red;
+            left: 0;
+            top: 0;
+        }
+    }
+
+    .audio_player__progress__bar,
+    .audio_player__progress__bar__value {
+        height: 0.5rem;
+        border-radius: 20px;
+    }
+
+}
+
+.audio_player__controls {
+    display: flex;
+    justify-content: center;
+
+    .audio_button {
+        width: 1.5rem;
+        height: auto;
+
+        &.--play {
+            width: 2.5rem;
+        }
+    }
+}
