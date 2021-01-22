@@ -1,9 +1,9 @@
 .legend {    
-    .legend_item {    
+    .legend__item {    
         display: inline-flex;
         margin: 0 0.25rem;
 
-        .legend_dot {
+        .legend__item__dot {
             display: inline-block;
             height: 0.75rem;
             width: 0.75rem;
@@ -13,7 +13,7 @@
             background-color: red;
         }
 
-        .legend_label {
+        .legend__item__label {
             font-weight: 300;
             font-size: 0.69rem;
         }

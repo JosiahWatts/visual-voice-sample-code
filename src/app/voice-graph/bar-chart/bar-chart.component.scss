@@ -1,4 +1,4 @@
-.bar_chart {
+.bar-chart {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,9 +20,9 @@
 .legend {
     align-self: flex-end;
     margin-right: 1rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 2rem;
     
-    .legend_dot {
+    .legend__item__dot {
         height: 0.5rem;
         width: 0.5rem;
         background-color: #c6c6c6;
@@ -31,7 +31,7 @@
         &.--negative { background-color: #e04a1d;}
     }
 
-    .legend_label {
+    .legend__item__label {
         font-size: 0.563rem;
     }
 }

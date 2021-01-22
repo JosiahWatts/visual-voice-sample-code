@@ -4,9 +4,6 @@ import { VisualVoiceGraphMetadata } from '../models/visual-voice.model';
 import { CallRecordingWaveformData } from '../models/call-recording-waveform.model';
 import { EventAudioMetaData, EventAudioMetaDataContainer } from '../models/event-audio-metadata.model';
 import { VisualVoiceBarChart } from '../models/visual-voice-bar-chart.model';
-// import { CallService } from './call/call.service';
-// import { CrFilterService } from './cr-filter.service';
-// import { KeywordType } from '../models/enums';
 import { Keyword } from '../models/keyword.model';
 import { BarChartBar } from '../models/bar-chart-bar.model';
 
@@ -25,6 +22,10 @@ export class VisualVoiceGraphService {
     private visualVoiceChartData: VisualVoiceBarChart;
     private audioWaveformData: CallRecordingWaveformData;
     private audioUtteranceData: EventAudioMetaData[];
+
+    private readonly positveEmotionColor = '#87c03f';
+    private readonly negativeEmotionColor = '#e04a1d';
+    private readonly neutralEmotionColor = '#c6c6c6';
 
     constructor() { }
 
@@ -72,7 +73,6 @@ export class VisualVoiceGraphService {
             this.normalizeWaveformData();
             this.createGraphData();
             this.packageUpGraphData();
-            //this.getAccountTranscriptionKeywords();
             this.updateChannelEmotionColors('customer');
             this.updateChannelEmotionColors('agent');
 
@@ -158,10 +158,6 @@ export class VisualVoiceGraphService {
                 let utterenceStart = utterences[j].start;
                 let utterenceEnd = utterences[j].end;
 
-                // Will be needed once we get actual keywords from Voci.
-                //let utterenceWords = utterences[j]?.text.split(' ').map(x => x.toLowerCase());
-                //let keywords = keywordSet.filter(x => utterenceWords.find(utteranceWord => utteranceWord.includes(x.phrase.toLowerCase())));
-
                 if (chartData[i].index >= utterenceStart && chartData[chartData.length - 1].index >= utterenceEnd) {
 
                     chartData[i].color = this.getBarChartColor(utterences[j]?.emotion);
@@ -172,7 +168,6 @@ export class VisualVoiceGraphService {
                     } 
                     else 
                         chartData[i].keywords = '';
-                    
                 }
             }
         }
@@ -186,14 +181,13 @@ export class VisualVoiceGraphService {
         const callEmotion = emotion.toLowerCase();
     
         if (callEmotion.includes('positive'))
-            return '#87c03f';
+            return this.positveEmotionColor;
         else if (callEmotion.includes('negative'))
-            return '#e04a1d';
+            return this.negativeEmotionColor;
         else
-            return '#c6c6c6';
+            return this.neutralEmotionColor;
     }
 
-    // Temporary until we get the voci emotion keywords.
     private getBarEmotionKeywords(event: EventAudioMetaData) {
         const callEmotion = event?.emotion.toLowerCase();
         let keywords = event?.phrases.join(', ');
@@ -216,20 +210,6 @@ export class VisualVoiceGraphService {
             length: 0
         };
     }
-
-    // private getAccountTranscriptionKeywords() {
-    //     const accountNumbers = this.filterService.getSelectedAccountNumbers();
-
-    //     if (accountNumbers) {
-    //         this.callService.getKeywords(accountNumbers).subscribe(keys => {
-    //             let keywords = keys;
-    //             if (keywords && keywords.length) {
-    //                 this.agentKeywords = keywords.filter(x => x.types.find(tp => tp == KeywordType.Agent));
-    //                 this.customerKeywords = keywords.filter(x => x.types.find(tp => tp == KeywordType.Client));
-    //             }
-    //         });
-    //     }
-    // }
 
     private precRound(x, precision) {
         const y = +x + (precision === undefined ? 0.5 : precision / 2);

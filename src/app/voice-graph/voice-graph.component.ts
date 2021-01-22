@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import testData1 from 'src/data/test-data';
+import testAudioMetaData from 'src/data/data';
 import { AudioStreamState } from '../shared/models/audio-stream-state.model';
 import { VisualVoiceBarChart } from '../shared/models/visual-voice-bar-chart.model';
 import { AudioService } from '../shared/services/audio.service';
 import { VisualVoiceGraphService } from '../shared/services/visual-voice-graph.service';
+
 
 @Component({
   	selector: 'app-voice-graph',
@@ -12,7 +13,7 @@ import { VisualVoiceGraphService } from '../shared/services/visual-voice-graph.s
 })
 export class VoiceGraphComponent implements OnInit {
 
-	public testData1 = testData1;
+	public testAudioMetaData = testAudioMetaData;
 	public visualVoiceBarChartData: VisualVoiceBarChart;
 	public isLoading: boolean = false;
 	public audioSeekRate: number;
@@ -26,14 +27,14 @@ export class VoiceGraphComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isLoading = true;
-		this.audioUrl = this.testData1.audioUrl;
+		this.audioUrl = this.testAudioMetaData.audioUrl;
 
 		this.audioService.getState()
 			.subscribe(state => {
 				this.audioState = state;
 			});
 
-		this.visualVoiceGraphService.getVisualVoiceData(testData1)
+		this.visualVoiceGraphService.getVisualVoiceData(testAudioMetaData)
 			.then(chartData => {
 				this.visualVoiceBarChartData = chartData;
 				this.audioSeekRate = chartData.seekRate;

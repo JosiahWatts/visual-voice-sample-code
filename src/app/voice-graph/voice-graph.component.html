@@ -1,25 +1,25 @@
-<div class="visual_voice_graph">
+<div class="visual-voice-graph">
 
     <bar-chart *ngIf="!isLoading"
                [data]="visualVoiceBarChartData"></bar-chart>
 
-    <div class="audio_player">
-        <div class="audio_player__inner_wrapper">
-            <div class="audio_player__progress">
+    <div class="audio-player">
+        <div class="audio-player__inner_wrapper">
+            <div class="audio-player__progress">
                 <span class="text-sm">{{ audioUrl ? audioState?.readableCurrentTime : '00:00' }}</span>
-                <div #audioProgressBar class="audio_player__progress__bar" (click)="seekToTime($event)">
-                    <div class="audio_player__progress__bar__value"
+                <div #audioProgressBar class="audio-player__progress__bar" (click)="seekToTime($event)">
+                    <div class="audio-player__progress__bar__value"
                         [ngStyle]="{'width': getProgressPercentage()}"></div>
                 </div>
                 <span class="text-sm">{{ audioUrl ? audioState?.readableDuration : '00:00' }}</span>
             </div>
-            <div class="audio_player__controls">
-                <button title="Rewind Audio" class="audio_button" (click)="rewindAudio()">
+            <div class="audio-player__controls">
+                <button title="Rewind Audio" class="audio-button" (click)="rewindAudio()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z" />
                     </svg>
                 </button>
-                <button [title]="audioState.playing ? 'Pause Audio' : 'Play Audio'" class="audio_button --play" (click)="playAudio()">
+                <button [title]="audioState.playing ? 'Pause Audio' : 'Play Audio'" class="audio-button --play" (click)="playAudio()">
                     <ng-container *ngIf="!audioState.playing else pause">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
@@ -31,7 +31,7 @@
                           </svg>
                     </ng-template>
                 </button>
-                <button title="Rewind Audio" class="audio_button" (click)="fastForwardAudio()">
+                <button title="Rewind Audio" class="audio-button" (click)="fastForwardAudio()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798l-5.445-3.63z" />
                     </svg>
