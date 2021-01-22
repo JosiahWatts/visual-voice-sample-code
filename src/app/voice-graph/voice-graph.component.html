@@ -2,6 +2,7 @@
 
     <bar-chart *ngIf="!isLoading"
                [data]="visualVoiceBarChartData"
+               [audioSeekRate]="audioSeekRate"
                (onSeek)="seekToBar($event)"></bar-chart>
 
     <div class="audio-player">

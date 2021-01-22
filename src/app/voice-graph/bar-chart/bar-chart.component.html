@@ -15,7 +15,7 @@
     </div>
 </div>
 
-<div class="bar-chart">
+<div class="bar-chart" [ngClass]="{'--highlighting' : isAudioPlaying}">
     <svg [attr.viewBox]="chartViewBox"
             [attr.height]="chartHeight"
             [attr.width]="chartWidth"
@@ -24,6 +24,7 @@
         <ng-container *ngFor="let datum of data.agent; index as i">
             <circle *ngIf="datum.keywords?.length >= 1"
                     class="keyword-dot"
+                    [ngClass]="{'--active': getOpacity(datum)}"
                     [attr.cx]="i * (barWidth + barMargin) + (barWidth / 2)"
                     [attr.cy]="dotRadius + (chartHeight - (datum.value * 80) - 50)"
                     [attr.r]="dotRadius"
@@ -35,6 +36,7 @@
         <rect *ngFor="let datum of data.agent; index as i"
                 (click)="onClick(datum, i)"
                 class="bar agent"
+                [ngClass]="{'--active': getOpacity(datum)}"
                 [attr.fill]="datum.color"
                 [attr.x]="i * (barWidth + barMargin)"
                 [attr.y]="chartHeight - (datum.value * 80)"
@@ -54,6 +56,7 @@
         <rect *ngFor="let datum of data.customer; index as i"
                 class="bar customer"
                 (click)="onClick(datum, i)"
+                [ngClass]="{'--active': getOpacity(datum, false)}"
                 [attr.fill]="datum.color"
                 [attr.x]="i * (barWidth + barMargin)"
                 [attr.y]="0"
@@ -64,6 +67,7 @@
         <ng-container *ngFor="let datum of data.customer; index as i">
             <circle *ngIf="datum.keywords?.length >= 1"
                     class="keyword-dot"
+                    [ngClass]="{'--active': getOpacity(datum, false)}"
                     [attr.cx]="i * (barWidth + barMargin) + (barWidth / 2)"
                     [attr.cy]="datum.value * 80 + 50"
                     [attr.r]="dotRadius"

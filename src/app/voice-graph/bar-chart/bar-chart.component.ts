@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { VisualVoiceBarChart } from 'src/app/shared/models/visual-voice-bar-chart.model';
 import { BarChartBar } from 'src/app/shared/models/bar-chart-bar.model';
+import { AudioService } from 'src/app/shared/services/audio.service';
+import { Subscription } from 'rxjs';
+import { Utilities } from 'src/app/shared/utilties';
 
 @Component({
     selector: 'bar-chart',
@@ -10,6 +13,7 @@ import { BarChartBar } from 'src/app/shared/models/bar-chart-bar.model';
 export class BarChartComponent {
 
     @Input() data: VisualVoiceBarChart;
+    @Input() audioSeekRate: number;
     @Output() onSeek: EventEmitter<number> = new EventEmitter();
 
     public barHeight = 1;
@@ -26,7 +30,28 @@ export class BarChartComponent {
     public currentClientText: string;
     public selectedKeyword: string;
 
-    constructor() {}
+    public isAudioPlaying: boolean = false;
+
+    private audioSubscription: Subscription;
+    private currentAudioTime: number;
+
+    constructor(private audioService: AudioService) {}
+
+    public ngOnInit() {
+        this.audioSubscription = 
+            this.audioService.getState().subscribe(state => {
+                this.isAudioPlaying = state.playing;
+                this.currentAudioTime = state.currentTime;
+
+                if (state.playing) {
+                    this.getActiveSpeakerText();
+                }
+            })
+    }
+
+    public ngOnDestroy() {
+        this.audioSubscription.unsubscribe();
+    }
 
     public ngOnChanges(changes: SimpleChanges) {
         if (changes['data'] != undefined) {
@@ -51,9 +76,18 @@ export class BarChartComponent {
 
     public showKeywords(bar: BarChartBar) {
         this.selectedKeyword = bar.keywords;
+        
         // Need this for now since production data
         // and development data differ.
         console.log(bar.keywords);
+    }
+
+    private getActiveSpeakerText() {
+        let index = Math.floor(Math.floor(this.currentAudioTime) / this.audioSeekRate);
+        index = Utilities.precisionRound(index, 1);
+
+        this.currentAgentText = this.data.agent[index]?.text;
+        this.currentClientText = this.data.customer[index]?.text;
     }
 
     public getOpacity(bar: BarChartBar, agent: boolean = true): boolean {

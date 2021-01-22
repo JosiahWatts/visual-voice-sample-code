@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import testAudioMetaData from 'src/data/data';
 import { AudioStreamState } from '../shared/models/audio-stream-state.model';
 import { VisualVoiceBarChart } from '../shared/models/visual-voice-bar-chart.model';
@@ -19,6 +20,8 @@ export class VoiceGraphComponent implements OnInit {
 	public audioSeekRate: number;
 	public audioUrl: string;
 	public audioState: AudioStreamState;
+	
+	private audioPlayerSubscription: Subscription;
 
 	@ViewChild('audioProgressBar') audioProgressBar: ElementRef;
 
@@ -29,10 +32,11 @@ export class VoiceGraphComponent implements OnInit {
 		this.isLoading = true;
 		this.audioUrl = this.testAudioMetaData.audioUrl;
 
-		this.audioService.getState()
-			.subscribe(state => {
-				this.audioState = state;
-			});
+		this.audioPlayerSubscription = 
+			this.audioService.getState()
+				.subscribe(state => {
+					this.audioState = state;
+				});
 
 		this.visualVoiceGraphService.getVisualVoiceData(testAudioMetaData)
 			.then(chartData => {
@@ -45,6 +49,10 @@ export class VoiceGraphComponent implements OnInit {
 				this.visualVoiceBarChartData = null;
 				this.isLoading = false;
 			});
+	}
+
+	ngOnDestroy() {
+		this.audioPlayerSubscription.unsubscribe();
 	}
 
 	public playAudio() {

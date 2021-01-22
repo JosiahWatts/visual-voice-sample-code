@@ -7,19 +7,27 @@
     border-bottom: 1px solid gainsboro;
     overflow: auto;
 
+    &.--highlighting {
+        .keyword-dot,
+        .bar {
+            opacity: 0.25;
+
+            &.--active {
+                opacity: 1;
+            }
+        }
+    }
+
     .keyword-dot,
     .bar {
         cursor: pointer;
+        transition: opacity 0.5s ease-in-out;
     }
-
+    
     .bar-chart__keyword-text {
         font-size: 0.75rem;
         padding-bottom: 0.25rem;
     }
-}
-
-.agent-chart {
-    margin-bottom: -2px;
 }
 
 .chart-divider {

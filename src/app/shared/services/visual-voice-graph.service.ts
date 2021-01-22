@@ -6,6 +6,7 @@ import { EventAudioMetaData, EventAudioMetaDataContainer } from '../models/event
 import { VisualVoiceBarChart } from '../models/visual-voice-bar-chart.model';
 import { Keyword } from '../models/keyword.model';
 import { BarChartBar } from '../models/bar-chart-bar.model';
+import { Utilities } from '../utilties';
 
 @Injectable({providedIn: 'root'})
 export class VisualVoiceGraphService {
@@ -97,7 +98,7 @@ export class VisualVoiceGraphService {
         
         this.agentChannelData = [];
         this.customerChannelData = [];
-        this.audioDuration = this.precRound(waveform.duration, 1);
+        this.audioDuration = Utilities.precisionRound(waveform.duration, 1);
         const chan1 = waveform.channel(1);
         const chan2 = waveform.channel(0);
 
@@ -108,7 +109,7 @@ export class VisualVoiceGraphService {
             const maxChan1 = chan1.max_sample(i);
             const maxChan2 = chan2.max_sample(i);
 
-            this.graphLabels.push(this.precRound(time, 1));
+            this.graphLabels.push(Utilities.precisionRound(time, 1));
             this.agentChannelData.push((maxChan1 + minChan1) / 2);
             this.customerChannelData.push(((maxChan2 + minChan2) / 2));
         }
@@ -145,8 +146,8 @@ export class VisualVoiceGraphService {
         }
 
         utterences.forEach(utt => {
-            utt.start = this.precRound(utt.start, 1);
-            utt.end = this.precRound(utt.end, 1);
+            utt.start = Utilities.precisionRound(utt.start, 1);
+            utt.end = Utilities.precisionRound(utt.end, 1);
         });
 
         utterences = this.sortUtterences(utterences);
@@ -209,10 +210,5 @@ export class VisualVoiceGraphService {
             seekRate: 3,
             length: 0
         };
-    }
-
-    private precRound(x, precision) {
-        const y = +x + (precision === undefined ? 0.5 : precision / 2);
-        return y - (y % (precision === undefined ? 1 : +precision));
     }
 }
