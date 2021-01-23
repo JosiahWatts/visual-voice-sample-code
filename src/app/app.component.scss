@@ -26,6 +26,8 @@ main {
     position: absolute;
     top: 2rem;
     right: 2rem;
+    color: var(--font-heading-color);
+    cursor: pointer;
 
     @media (max-width: 1024px) { 
         display: block; 
@@ -52,7 +54,7 @@ main {
     position: fixed;
     top: 0;
     left: 0;
-    background: white;
+    background: var(--background-color);
     height: 100%;
     width: 100%;
     padding: 1rem;
@@ -112,6 +114,10 @@ main {
 .github-link {
     display: flex;
     align-items: center;
+
+    a {
+        color: var(--font-heading-color);
+    }
 
     span {
         margin-left: 0.5rem;
