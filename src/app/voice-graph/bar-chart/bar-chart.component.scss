@@ -48,6 +48,7 @@
     .legend__item__dot {
         height: 0.5rem;
         width: 0.5rem;
+        margin-top: 4px;
         background-color: #c6c6c6;
 
         &.--positive { background-color: #87c03f;}
@@ -55,6 +56,6 @@
     }
 
     .legend__item__label {
-        font-size: 0.563rem;
+        font-size: 0.69rem;
     }
 }
