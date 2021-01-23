@@ -1,0 +1,50 @@
+.toggle-switch {
+    display: flex;
+    align-items: center;
+
+    /* The switch - the box around the slider */
+    .toggle-switch__switch {
+        position: relative;
+        display: inline-block;
+        width: 2.5rem;
+        height: 1.25rem;
+        margin-bottom: 0;
+    }
+    
+    /* Hide default HTML checkbox */
+    .toggle-switch__switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    /* The slider */
+    .toggle-switch__slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid var(--font-heading-color);
+        transition: .4s;
+        border-radius: 2.5em;
+    }
+    
+    .toggle-switch__slider:before {
+        position: absolute;
+        content: "";
+        height: 0.6rem;
+        width: 0.6rem;
+        border-radius: 50%;
+        border: 1px solid var(--primary-color-1);
+        background-color: var(--primary-color-1);
+        transition: 0.4s;
+        top: 0.2rem;
+        left: 0.25rem;
+    }
+
+    input:checked + .toggle-switch__slider:before {
+        transform: translateX(1.2rem);
+    }
+}

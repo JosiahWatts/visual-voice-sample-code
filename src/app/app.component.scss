@@ -111,17 +111,14 @@ main {
     margin-left: 2rem;
 }
 
+.color-toggle-container,
 .github-link {
     display: flex;
     align-items: center;
-
-    a {
-        color: var(--font-heading-color);
-    }
-
-    span {
-        margin-left: 0.5rem;
-    }
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    color: var(--font-heading-color);
+    font-weight: 600;
 }
 
 .footer {
