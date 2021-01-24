@@ -106,7 +106,7 @@
         <div class="navigation__links">
             <div class="color-toggle-container">
                 <span class="text-xsm">Toggle Dark Mode</span>
-                <toggle-switch></toggle-switch>
+                <toggle-switch [isChecked]="isDarkMode" (onChange)="setColorPreference($event)"></toggle-switch>
             </div>
             <a class="github-link" href="https://github.com/JosiahWatts/visual-voice-sample-code" target="_blank">
                 <span class="text-xsm">Check out the code on GitHub!</span>

@@ -30,12 +30,17 @@ export class ToggleSwitchComponent {
 
     public checked = false;
 
+    @Input() isChecked = false;
     @Input() isDisabled = false; 
 
     @Output() onChange: EventEmitter<any> = new EventEmitter();
 
     onChanged: Function = () => {};
     onTouched: Function = () => {};
+    
+    public ngOnInit() {
+        this.checked = this.isChecked;
+    }
 
     public onToggle(event) {
         const inputChecked = event.target.checked;

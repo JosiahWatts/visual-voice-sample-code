@@ -101,6 +101,12 @@ main {
     font-family: 'Ubuntu';
 }
 
+.navigation__links {
+    @media (max-width: 1024px) { 
+        margin-right: 2rem;
+    }
+}
+
 .ordered-list-heading {
     margin-top: 1rem;
     margin-bottom: 0.5rem;
