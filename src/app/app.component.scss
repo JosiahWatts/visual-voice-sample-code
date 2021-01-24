@@ -26,6 +26,8 @@ main {
     position: absolute;
     top: 2rem;
     right: 2rem;
+    color: var(--font-heading-color);
+    cursor: pointer;
 
     @media (max-width: 1024px) { 
         display: block; 
@@ -52,7 +54,7 @@ main {
     position: fixed;
     top: 0;
     left: 0;
-    background: white;
+    background: var(--background-color);
     height: 100%;
     width: 100%;
     padding: 1rem;
@@ -99,6 +101,12 @@ main {
     font-family: 'Ubuntu';
 }
 
+.navigation__links {
+    @media (max-width: 1024px) { 
+        margin-right: 2rem;
+    }
+}
+
 .ordered-list-heading {
     margin-top: 1rem;
     margin-bottom: 0.5rem;
@@ -109,13 +117,14 @@ main {
     margin-left: 2rem;
 }
 
+.color-toggle-container,
 .github-link {
     display: flex;
     align-items: center;
-
-    span {
-        margin-left: 0.5rem;
-    }
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    color: var(--font-heading-color);
+    font-weight: 600;
 }
 
 .footer {

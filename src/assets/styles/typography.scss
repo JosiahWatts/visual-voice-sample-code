@@ -1,10 +1,10 @@
-.text-xxlg   { font-size: 2rem !important; }
-.text-xlg    { font-size: 1.5rem !important; }
-.text-lg     { font-size: 1.125rem !important; }
-.text-base   { font-size: 1rem !important; }
-.text-md     { font-size: 0.87rem !important; }
-.text-sm     { font-size: 0.75rem !important; }
-.text-xsm    { font-size: 0.69rem !important; }
-.text-xxsm   { font-size: 0.56rem !important; }
+.text-xxlg   { font-size: var(--size-xxl) !important; }
+.text-xlg    { font-size: var(--size-xl) !important; }
+.text-lg     { font-size: var(--size-lg) !important; }
+.text-base   { font-size: var(--size-base) !important; }
+.text-md     { font-size: var(--size-md) !important; }
+.text-sm     { font-size: var(--size-sm) !important; }
+.text-xsm    { font-size: var(--size-xsm) !important; }
+.text-xxsm   { font-size: var(--size-xxsm) !important; }
 
 .font-hairline { font-weight: 300; }

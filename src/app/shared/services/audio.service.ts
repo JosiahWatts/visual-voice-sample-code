@@ -138,7 +138,7 @@ export class AudioService {
         this.audio.currentTime = seconds;
     }
 
-    public formatTime(time) {
+    private formatTime(time) {
         const hr  = Math.floor(time / 3600);
         const min = Math.floor((time - (hr * 3600)) / 60);
         const sec = Math.floor(time - (hr * 3600) - (min * 60));

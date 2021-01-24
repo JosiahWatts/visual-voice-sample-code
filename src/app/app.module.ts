@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VoiceGraphComponent } from './voice-graph/voice-graph.component';
 import { BarChartComponent } from './voice-graph/bar-chart/bar-chart.component';
+import { ToggleSwitchModule } from './shared/components/toggle-switch/toggle-switch.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BarChartComponent } from './voice-graph/bar-chart/bar-chart.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToggleSwitchModule
   ],
   providers: [],
   bootstrap: [AppComponent]

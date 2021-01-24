@@ -4,7 +4,7 @@
     </aside>
     <div class="layout-content container">
         <button class="hamburger-button" (click)="toggleMobileMenu()">
-            <svg viewBox="0 0 24 24">
+            <svg fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd"
                     d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
             </svg>
@@ -19,10 +19,10 @@
                     <app-voice-graph></app-voice-graph>
     
                     <p style="margin-top: 2rem">
-                        The CallRevu Visual Voice Graph is a visual representation developed by me (Josiah Watts) for CallRevu in order to represent a typical phone call that comes into an automotive dealership. 
-                        This representation is beneficial because it is a fairly quick way to determine the outcome of a call. Each bar represents a predefined slice of the call audio. Looking at the graph, 
-                        you can immediately see the colored bars. These colored bars represent the emotional state of the agent (top) and customer (bottom) at the time of the call. If you hover over the dots, 
-                        you are able to see the phrase that caused the bar to change color. Additionally, you can click on the bars and the audio player will skip to that point on the recording.
+                        The CallRevu Visual Voice Graph, developed by me (Josiah Watts) for CallRevu, is a graphical representation of a typical phone call that comes into an automotive dealership. 
+                        The graph can be beneficial because it provides a quick glance to determine the outcome of a call. Each bar represents a 3 second slice of the call. You can click on the bars to
+                        skip through the recording. Additionally, you will notice that some of the bars are a different color. These colors represent the emotional state of the agent (top) and customer (bottom) at that slice. 
+                        At the beginning of each emotional change, you will find a dot above the bar. Clicking on the dot will show you the phrase that triggered the emotional change.
                     </p>
                 </div>
             </section>
@@ -34,13 +34,13 @@
                 </div>
                 <div class="section__content">
                     <p>
-                        The Visual Voice graph was a challenging but fun problem to solve. It was interesting because there is nothing really out there like it, so it is not like you can go watch a tutorial or read a blog post. 
-                        I think this would probably be the most custom feature of an application I have worked on yet. Here is a very general overview on how it works:
+                        Visual Voice was a challenging but fun problem to solve. At the beginning of development, I really did not have a good starting point because there are not many resources (blog posts & tutorials) out there for features like this.a
+                        Based on that, I think this may have been the most custom feature I have ever built for an application. Lots of firsts here. Below, you will find a very general overview on how it works:
                     </p>
     
                     <h5 class="ordered-list-heading">Back End</h5>
                     <ol class="ordered-list">
-                        <li>Get the audio recording from Twilio</li>
+                        <li>Obtain the audio recording from Twilio</li>
                         <li>Transform the audio recording into waveform data (easier said than done)</li>
                         <li>Get the transcription data from a third party service</li>
                         <li>The previous steps create the metadata which is then served up to the front-end via REST endpoint</li>
@@ -51,7 +51,7 @@
                         <li>The metadata is then passed over to the Visual Voice Graph Service</li>
                         <li>The service cleans the metadata by normalizing the values</li>
                         <li>From there, we split the metadata into an Agent Channel and a Customer Channel and create a base bar configuration</li>
-                        <li>After that, the service matches up transcriptions to the audio by checking if the start/end transcription time falls between the chart's index and next index</li>
+                        <li>After that, the service matches up transcription utterences to the audio by checking if the start/end transcription time falls between the chart's index and next index</li>
                         <li>Finally, the data is returned from the service and passed into the graph component which displays the bars</li>
                     </ol>
                 </div>
@@ -102,9 +102,16 @@
             <li class="navigation__item"><a href="#how-it-works">How it Works</a></li>
             <li class="navigation__item"><a href="#technical-challenges">Technical Challenges</a></li>
         </ul>
-        <a class="github-link" href="https://github.com/JosiahWatts/visual-voice-sample-code" target="_blank">
-            <svg class="octicon octicon-mark-github v-align-middle" height="24" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-            <span class="text-xsm">Check out the code on GitHub!</span>
-        </a>
+        <hr>
+        <div class="navigation__links">
+            <div class="color-toggle-container">
+                <span class="text-xsm">Toggle Dark Mode</span>
+                <toggle-switch [isChecked]="isDarkMode" (onChange)="setColorPreference($event)"></toggle-switch>
+            </div>
+            <a class="github-link" href="https://github.com/JosiahWatts/visual-voice-sample-code" target="_blank">
+                <span class="text-xsm">Check out the code on GitHub!</span>
+                <svg fill="currentColor" height="24" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            </a>
+        </div>
     </nav>
 </ng-template>

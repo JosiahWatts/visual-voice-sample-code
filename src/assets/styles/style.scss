@@ -2,26 +2,69 @@
 @import 'typography';
 @import 'legend';
 @import 'layout';
+@import 'toggle-switch';
 
 :root {
     --primary-color-1: #0891B2;
     --primary-color-2: #0E7490;
     --primary-accent-1: #06B6D4;
 
-    --foreground-color: white;
-    --background-color: white;
+    --foreground-color: rgb(255,255,255);
+    
+    --background-color: rgb(255,255,255);
+    --background-color-light: rgb(255,255,255);
+    --background-color-dark: rgb(31, 41, 55); 
 
     --font-color: rgb(107,114,128);
+    --font-color-light: rgb(107,114,128);
+    --font-color-dark: rgb(255,255,255);
+
     --font-heading-color: rgb(17, 24, 39);
+    --font-heading-color-light: rgb(17, 24, 39);
+    --font-heading-color-dark: rgb(209, 213, 219);
+
     --font-heading: 'Ubuntu', sans-serif;
     --font-body: 'Open Sans', sans-serif;
 
+    --size-xxl: 2rem;
+    --size-xl: 1.5rem;
+    --size-lg: 1.125rem;
+    --size-base: 1rem;
+    --size-md: 0.87rem;
+    --size-sm: 0.75rem;
+    --size-xsm: 0.69rem;
+    --size-xxsm: 0.56rem;
 }
 
 body {
     font-family: var(--font-body);
     color: var(--font-color);
+    background-color: var(--background-color);
     line-height: 1.5;
+
+    &.light {
+        --background-color: var(--background-color-light);
+        --font-heading-color: var(--font-heading-color-light);
+        --font-color: var(--font-color-light);
+    }
+
+    &.dark {
+        --background-color: var(--background-color-dark);
+        --font-heading-color: var(--font-heading-color-dark);
+        --font-color: var(--font-color-dark);
+    }
+
+    @media (prefers-color-scheme: light) {
+        --background-color: var(--background-color-light);
+        --font-heading-color: var(--font-heading-color-light);
+        --font-color: var(--font-color-light);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        --background-color: var(--background-color-dark);
+        --font-heading-color: var(--font-heading-color-dark);
+        --font-color: var(--font-color-dark);
+    }
 }
 
 h1,
