@@ -8,8 +8,8 @@ export class LocalStorageService {
 
         if (data !== null)
             return data as T;
-        else
-            return null;
+
+        return null;
     }
 
     public saveDataObject(data: any, key: string) {
